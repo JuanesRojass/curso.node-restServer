@@ -13,8 +13,8 @@ const usuariosGet = async (req = request, res = response) => {
     const [total, usuarios] = await Promise.all([
         Usuario.countDocuments(query),
         Usuario.find(query)
-            .skip(Number(desde)),
-            limit(Number(limite))
+            .skip(Number(desde))
+            .limit(Number(limite))
     ])
     
 
@@ -70,11 +70,8 @@ const usuariosDelete = async(req, res = response) => {
     // const usuario = await Usuario.findByIdAndDelete(id);
 
     const usuario = await Usuario.findByIdAndUpdate(id, {estado: false});
-
-
-    res.json({
-        usuario
-    });
+ 
+    res.json(usuario);
 }
 
 const usuariosPatch = (req, res = response) => {
